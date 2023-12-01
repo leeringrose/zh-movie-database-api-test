@@ -1,12 +1,11 @@
-import { IContextState } from '../shared/types';
+import type { IState, IAction } from '../AppContext';
 
-const personsReducer = (state: IContextState, action: any) => {
+const personsReducer = (state: IState, action: IAction) => {
   switch (action.type) {
-    case 'APPEND_PERSONS':
+    case 'UPDATE_PERSONS':
       return {
         ...state,
         persons: [
-          ...state.persons,
           ...action.newPersons
         ]
       };

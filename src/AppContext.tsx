@@ -1,23 +1,28 @@
-import React, { createContext, useReducer } from 'react';
+import React, { Dispatch, createContext, useReducer } from 'react';
 
-import { IContextState } from './shared/types';
+import { IPerson } from './shared/types';
 import { personsReducer } from './reducers';
 
-const initialState: IContextState = {
+// Define types for the state and actions
+export type IState = {
+  persons: Array<IPerson>
+}
+export type IAction =
+  | { type: 'UPDATE_PERSONS', newPersons: Array<IPerson> }
+
+// Initial State
+const initialState: IState = {
   persons: [],
-  currentPage: 1,
 };
 
-interface IContextProvider {
-  state: IContextState
-  dispatch: React.Dispatch<any>
-}
+// Create an AppContext
+const AppContext = createContext<{ state: IState, dispatch: Dispatch<IAction> }>({
+  state: initialState,
+  dispatch: () => null
+});
 
-const AppContext = createContext<IContextProvider | undefined>(undefined);
-
-const ContextProvider: React.FC<{
-  children: React.ReactNode
-}> = ({ children }) => {
+// Context Provider Component
+const ContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(personsReducer, initialState);
 
   return (
@@ -27,4 +32,4 @@ const ContextProvider: React.FC<{
   );
 };
 
-export default ContextProvider;
+export { ContextProvider, AppContext };

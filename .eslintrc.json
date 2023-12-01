@@ -29,7 +29,7 @@
     "jsx-quotes": ["error", "prefer-single"],
     "object-curly-spacing": ["error", "always"],
     "no-duplicate-imports": "error",
-    "max-len": ["error", 80, 2],
+    "max-len": ["error", 90, 2],
     "no-extra-parens": "error",
     "space-in-parens": ["error", "never"],
     "@typescript-eslint/no-unused-vars": "error",

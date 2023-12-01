@@ -1,14 +1,13 @@
-import React from 'react';
 import { Container } from '@mui/material';
 
-import ContextWrapper from './AppContext';
+import { ContextProvider } from './AppContext';
 import './App.css';
 import Header from './components/Header';
 import SearchBox from './components/SearchBox';
 
 function App() {
   return (
-    <ContextWrapper>
+    <ContextProvider>
       <div className='App'>
         <Header />
         <Container
@@ -20,10 +19,10 @@ function App() {
             pt: 5
           }}
         >
-          <SearchBox searchText='Bruce' />
+          <SearchBox />
         </Container>
       </div>
-    </ContextWrapper>
+    </ContextProvider>
   );
 }
 
