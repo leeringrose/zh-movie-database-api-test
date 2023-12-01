@@ -27,3 +27,8 @@ export interface IPerson {
   profile_path: string
   known_for: Array<IKnowFor>
 }
+
+export interface IContextState {
+  persons: Array<IPerson>
+  currentPage: number
+}
