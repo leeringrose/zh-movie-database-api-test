@@ -1,9 +1,9 @@
-import React, { useContext, lazy, Suspense } from 'react';
+import React, { useContext } from 'react';
 
 import List from '@mui/material/List';
 
 import { AppContext } from '../../AppContext';
-const ListItem = lazy(() => import('./ListItem'));
+import ListItem from './ListItem';
 import { Container } from '@mui/material';
 
 const DisplayPad: React.FC = () => {
@@ -31,18 +31,16 @@ const DisplayPad: React.FC = () => {
           maxWidth: 600
         }}
       >
-        {chosens.map((person, index) => <Suspense
-          key={index}
-          fallback={'...'}
-        >
+        {chosens.map((person, index) =>
           <ListItem
+            key={index}
             globalId={person.id}
-            index={index}
+            name={person.name}
             clickListItem={handleViewDetail}
           />
-        </Suspense>)}
+        )}
       </List>
-    </Container>
+    </Container >
   );
 };
 
