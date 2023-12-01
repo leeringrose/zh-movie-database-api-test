@@ -11,7 +11,7 @@ const Header = () => {
   }));
   return (
     <AppBar
-      position='fixed'
+      position='sticky'
       sx={{
         display: 'flex',
         alignItems: 'center',
