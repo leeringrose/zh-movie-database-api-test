@@ -22,27 +22,38 @@ const SearchBox: React.FC = () => {
     console.log(persons);
   };
 
+  const handleListItemClick = (globalId: number) => {
+    persons.forEach(person => {
+      if (person.id === globalId) {
+        dispatch({ type: 'ADD_LIST', newPerson: person });
+        return;
+      }
+    });
+  };
+
   return (
-    <div>
+    <>
       <Autocomplete
         options={persons.map((person, index) => ({
-          id: index, title: person.name
+          id: index, person
         }))}
         renderOption={(_, option) => <ListItem
           key={option.id}
           index={option.id}
-          title={option.title}
+          globalId={option.person.id}
+          title={option.person.name}
+          clickListItem={handleListItemClick}
         />}
-        getOptionLabel={(option) => option.title}
+        getOptionLabel={(option) => option.person.name}
         sx={{ width: 300 }}
         renderInput={(params) => <TextField
           {...params}
           value={searchText}
-          label={'Enter Actor\'s name=...'}
+          label={'Enter Actor\'s Name=...'}
           onChange={handleSearchChange}
         />}
       />
-    </div>
+    </>
   );
 };
 
