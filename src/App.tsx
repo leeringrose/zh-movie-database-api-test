@@ -4,6 +4,7 @@ import { ContextProvider } from './AppContext';
 import './App.css';
 import Header from './components/Header';
 import SearchBox from './components/SearchBox';
+import DisplayPad from './components/DisplayPad';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           }}
         >
           <SearchBox />
+          <DisplayPad />
         </Container>
       </div>
     </ContextProvider>
