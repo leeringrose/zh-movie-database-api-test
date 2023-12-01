@@ -6,13 +6,16 @@ import { personsReducer } from './reducers';
 // Define types for the state and actions
 export type IState = {
   persons: Array<IPerson>
+  chosens: Array<IPerson>
 }
 export type IAction =
   | { type: 'UPDATE_PERSONS', newPersons: Array<IPerson> }
+  | { type: 'ADD_LIST', newPerson: IPerson }
 
 // Initial State
 const initialState: IState = {
   persons: [],
+  chosens: []
 };
 
 // Create an AppContext
