@@ -31,7 +31,6 @@ const usePersons = (searchName: string, dispatch: Dispatch<IAction>) => {
             },
           });
           const result: ISearchResult = response.data;
-
           dispatch({
             type: 'UPDATE_PERSONS',
             newPersons: result.results,
