@@ -15,9 +15,6 @@ interface ISearchResult {
 const usePersons = (searchName: string, dispatch: Dispatch<IAction>) => {
 
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(searchName);
-
     if (searchName) {
       const fetchData = async () => {
         try {

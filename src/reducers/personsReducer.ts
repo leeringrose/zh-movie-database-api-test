@@ -13,8 +13,6 @@ const personsReducer = (state: IState, action: IAction) => {
       if (state.chosens.includes(action.newPerson)) {
         return state;
       } else {
-        // eslint-disable-next-line no-console
-        console.log(state.chosens, action.newPerson);
         return {
           ...state,
           chosens: [
