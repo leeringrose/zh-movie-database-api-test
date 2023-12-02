@@ -1,9 +1,8 @@
-import { Container } from '@mui/material';
+import Container from '@mui/material/Container';
 
 import { ContextProvider } from './AppContext';
 import './App.css';
 import Header from './components/Header';
-import SearchBox from './components/SearchBox';
 import DisplayPad from './components/DisplayPad';
 
 function App() {
@@ -17,10 +16,10 @@ function App() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            pt: 5
+            backgroundColor: 'rgb(0, 0, 0, 0.05)',
+            pt: 4
           }}
         >
-          <SearchBox />
           <DisplayPad />
         </Container>
       </div>
