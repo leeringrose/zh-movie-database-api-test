@@ -15,18 +15,17 @@ const Header = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100px',
+        height: '80px',
         background: '#f5ca16',
         color: 'black'
       }}>
       <Container>
-        <Typography variant={`${matchMedia ? 'h2' : 'h4'}`} sx={{
-          fontWeight: '800'
+        <Typography variant={`${matchMedia ? 'h3' : 'h5'}`} sx={{
+          fontWeight: '700'
         }}>
           CREDIT CROSSOVER
         </Typography>
       </Container>
-
     </AppBar>
   );
 };

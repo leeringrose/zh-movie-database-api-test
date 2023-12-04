@@ -4,7 +4,6 @@ import List from '@mui/material/List';
 
 import { AppContext } from '../../AppContext';
 import ListItem from './ListItem';
-import { Container } from '@mui/material';
 
 const DisplayPad: React.FC = () => {
 
@@ -17,30 +16,21 @@ const DisplayPad: React.FC = () => {
   };
 
   return (
-    <Container
-      role='feed'
-      maxWidth='md'
-      fixed
+    <List
       sx={{
-        p: 6
+        width: '100%',
+        height: '100%',
+        overflowY: 'auto'
       }}
     >
-      <List dense
-        sx={{
-          width: '100%',
-          maxWidth: 600
-        }}
-      >
-        {chosens.map((person, index) =>
-          <ListItem
-            key={index}
-            globalId={person.id}
-            name={person.name}
-            clickListItem={handleViewDetail}
-          />
-        )}
-      </List>
-    </Container >
+      {chosens.map((person, index) =>
+        <ListItem
+          key={index}
+          personInfo={person}
+          clickListItem={handleViewDetail}
+        />
+      )}
+    </List>
   );
 };
 

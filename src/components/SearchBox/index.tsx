@@ -18,8 +18,6 @@ const SearchBox: React.FC = () => {
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
-    // eslint-disable-next-line no-console
-    console.log(persons);
   };
 
   const handleListItemClick = (globalId: number) => {
@@ -37,6 +35,7 @@ const SearchBox: React.FC = () => {
         options={persons.map((person, index) => ({
           id: index, person
         }))}
+        limitTags={5}
         renderOption={(_, option) => <ListItem
           key={option.id}
           index={option.id}

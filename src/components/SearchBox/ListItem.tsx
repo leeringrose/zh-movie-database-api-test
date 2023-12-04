@@ -17,7 +17,14 @@ const ListItem: React.FC<IListItem> =
     }}
     onClick={() => clickListItem(globalId)}
   >
-    <ListItemText > {title}</ListItemText >
+    <ListItemText
+      sx={{
+        height: '10px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+    > {title}</ListItemText >
   </MuiListItem >;
 
 export default ListItem;
