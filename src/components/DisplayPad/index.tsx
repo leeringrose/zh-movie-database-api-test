@@ -4,6 +4,7 @@ import List from '@mui/material/List';
 
 import { AppContext } from '../../AppContext';
 import ListItem from './ListItem';
+import NoData from '../NoData';
 
 const DisplayPad: React.FC = () => {
 
@@ -16,21 +17,26 @@ const DisplayPad: React.FC = () => {
   };
 
   return (
-    <List
-      sx={{
-        width: '100%',
-        height: '100%',
-        overflowY: 'auto'
-      }}
-    >
-      {chosens.map((person, index) =>
-        <ListItem
-          key={index}
-          personInfo={person}
-          clickListItem={handleViewDetail}
-        />
-      )}
-    </List>
+    <>
+      {
+        chosens.length ?
+          <List
+            sx={{
+              width: '100%',
+              height: '100%',
+              overflowY: 'auto'
+            }}
+          >
+            {chosens.map((person, index) =>
+              <ListItem
+                key={index}
+                personInfo={person}
+                clickListItem={handleViewDetail}
+              />)}
+          </List >
+          : <NoData category='Person' issued='chosen' />
+      }
+    </>
   );
 };
 

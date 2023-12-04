@@ -1,4 +1,4 @@
-export interface IKnowFor {
+export interface IKnownMovie {
   adult: boolean
   backdrop_path: string
   id: number
@@ -25,5 +25,16 @@ export interface IPerson {
   original_name: string
   popularity: number
   profile_path: string
-  known_for: Array<IKnowFor>
+  known_for: Array<IKnownMovie>
 }
+
+export type IDepartmentColorMap = {
+  [key: string]:
+  | 'primary'
+  | 'secondary'
+  | 'default'
+  | 'error'
+  | 'info'
+  | 'success'
+  | 'warning'
+};

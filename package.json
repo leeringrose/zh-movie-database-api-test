@@ -48,8 +48,12 @@
     "@types/axios": "^0.14.0",
     "@types/dotenv": "^8.2.0",
     "@types/json2mq": "^0.2.2",
+    "@types/react-lazy-load-image-component": "^1.6.3",
     "axois": "^0.0.1-security",
     "dotenv": "^16.3.1",
-    "json2mq": "^0.2.0"
+    "i": "^0.3.7",
+    "json2mq": "^0.2.0",
+    "npm": "^10.2.4",
+    "react-lazy-load-image-component": "^1.6.0"
   }
 }

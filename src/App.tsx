@@ -4,13 +4,13 @@ import Box from '@mui/material/Box';
 import { ContextProvider } from './AppContext';
 import './App.css';
 import Header from './components/Header';
+import { Feed } from './pages';
 import DisplayPad from './components/DisplayPad';
-import SearchBox from './components/SearchBox';
 
 function App() {
   return (
     <ContextProvider>
-      <div className='App'>
+      <Box className='App'>
         <Header />
         <Container
           role='feed'
@@ -23,19 +23,10 @@ function App() {
             overflow: 'auto'
           }}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              p: 3
-            }}
-          >
-            <SearchBox />
-          </Box>
+          <Feed />
           <DisplayPad />
         </Container>
-      </div>
+      </Box>
     </ContextProvider>
   );
 }

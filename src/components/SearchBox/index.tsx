@@ -48,7 +48,7 @@ const SearchBox: React.FC = () => {
         renderInput={(params) => <TextField
           {...params}
           value={searchText}
-          label={'Enter Actor\'s Name=...'}
+          label={'Enter Person\'s Name...'}
           onChange={handleSearchChange}
         />}
       />
