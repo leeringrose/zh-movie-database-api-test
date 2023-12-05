@@ -15,11 +15,12 @@ export const DepartmentColorMap: IDepartmentColorMap = {
   'Production': 'success',
   'Directing': 'warning',
   'Art': 'secondary',
-  'Lighting': 'warning',
-  'Writing': 'error'
+  'Lighting': 'info',
+  'Writing': 'error',
+  'Camera': 'default'
 };
 
-export const warnAdult: (isAdult: boolean, children: ReactNode) => ReactNode =
+export const warnAdultWithBadge: (isAdult: boolean, children: ReactNode) => ReactNode =
   (isAdult, children) => {
     if (isAdult) {
       return <Badge color='error'

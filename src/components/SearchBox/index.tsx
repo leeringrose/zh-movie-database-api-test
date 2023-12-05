@@ -50,6 +50,7 @@ const SearchBox: React.FC = () => {
           value={searchText}
           label={'Enter Person\'s Name...'}
           onChange={handleSearchChange}
+          size='small'
         />}
       />
     </>

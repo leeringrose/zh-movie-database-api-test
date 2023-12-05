@@ -11,7 +11,11 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 
-import { GenderIdentities, DepartmentColorMap, warnAdult } from '../../shared/service';
+import {
+  GenderIdentities,
+  DepartmentColorMap,
+  warnAdultWithBadge
+} from '../../shared/service';
 import { apiServerURL, imageServerURL } from '../../config';
 import { IPerson } from '../../shared/types';
 import { Chip } from '@mui/material';
@@ -114,7 +118,7 @@ const ListItem: React.FC<IListItem> = ({ personInfo, clickListItem }) => {
                 {`${original_name}`}
               </Typography>
               <Divider sx={{ width: '100%' }} />
-              {warnAdult(adult, <Chip
+              {warnAdultWithBadge(adult, <Chip
                 color={DepartmentColorMap[`${known_for_department}`]}
                 label={known_for_department} />)}
               <Typography variant='subtitle1' color='blue' component='div'>
@@ -122,6 +126,7 @@ const ListItem: React.FC<IListItem> = ({ personInfo, clickListItem }) => {
               </Typography>
             </CardContent>
             <CardContent>
+
             </CardContent>
           </Box>
         </Card >
