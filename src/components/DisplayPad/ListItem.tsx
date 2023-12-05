@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
@@ -7,32 +7,16 @@ import MuiListItem from '@mui/material/ListItem';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CircularProgress from '@mui/material/CircularProgress';
-import Badge from '@mui/material/Badge';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 
-import { GenderIdentities, DepartmentColorMap } from '../../shared/service';
+import { GenderIdentities, DepartmentColorMap, warnAdult } from '../../shared/service';
 import { apiServerURL, imageServerURL } from '../../config';
 import { IPerson } from '../../shared/types';
 import { Chip } from '@mui/material';
 
-const warnAdult: (isAdult: boolean, children: ReactNode) => ReactNode =
-  (isAdult, children) => {
-    if (isAdult) {
-      return <Badge
-        color='error'
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        variant='dot'
-      >{children}</Badge>
-        ;
-    } else {
-      return <>{children}</>;
-    }
-  };
+
 
 interface IListItem {
   personInfo: IPerson;
@@ -110,10 +94,8 @@ const ListItem: React.FC<IListItem> = ({ personInfo, clickListItem }) => {
             />
           </CardContent>
           <Box
-            sx={{
-              display: 'flex',
-              flexGrow: 1
-            }}
+            display='flex'
+            flexGrow={1}
           >
             <CardContent
               sx={{

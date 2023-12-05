@@ -4,8 +4,6 @@ import Typography from '@mui/material/Typography';
 
 import { IKnownMovie } from '../../shared/types';
 
-
-
 const Carousel: React.FC<IKnownMovie> = (movieInfo) => {
 
   const { title, release_date, vote_count } = movieInfo;
