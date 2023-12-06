@@ -11,11 +11,6 @@ const DisplayPad: React.FC = () => {
   const { state } = useContext(AppContext);
   const { chosens } = state;
 
-  const handleViewDetail = (personId: number) => {
-    // eslint-disable-next-line no-console
-    console.log(personId);
-  };
-
   return (
     <>
       {
@@ -30,7 +25,6 @@ const DisplayPad: React.FC = () => {
               <ListItem
                 key={index}
                 personInfo={person}
-                clickListItem={handleViewDetail}
               />)}
           </List >
           : <NoData category='Person' issued='chosen' />

@@ -34,3 +34,7 @@ export const warnAdultWithBadge: (isAdult: boolean, children: ReactNode) => Reac
       return <>{children} </>;
     }
   };
+
+export const getParentSubPath: (path: string) => string = (path) => {
+  return path.substring(0, path.lastIndexOf('/'));
+};

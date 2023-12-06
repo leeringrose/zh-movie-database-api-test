@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 // Import Mui Components
 import MuiListItem from '@mui/material/ListItem';
@@ -14,24 +15,33 @@ import Box from '@mui/material/Box';
 import {
   GenderIdentities,
   DepartmentColorMap,
-  warnAdultWithBadge
+  warnAdultWithBadge,
 } from '../../shared/service';
 import { apiServerURL, imageServerURL } from '../../config';
 import { IPerson } from '../../shared/types';
 import { Chip } from '@mui/material';
 
-
-
 interface IListItem {
   personInfo: IPerson;
-  clickListItem: (personId: number) => void;
 }
 
-const ListItem: React.FC<IListItem> = ({ personInfo, clickListItem }) => {
+const ListItem: React.FC<IListItem> = ({ personInfo }) => {
 
-  const { name, id, gender, original_name, known_for_department, adult } = personInfo;
+  const { name,
+    id,
+    gender,
+    original_name,
+    known_for_department,
+    adult,
+    popularity } = personInfo;
   const [avatarPath, setAvatarPath] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+
+  // eslint-disable-next-line no-console
+  console.log(location);
 
   useEffect(() => {
     const fetchAvatars = async () => {
@@ -54,6 +64,10 @@ const ListItem: React.FC<IListItem> = ({ personInfo, clickListItem }) => {
     fetchAvatars();
   }, [id]);
 
+  const handleClickItem = (id: number) => {
+    navigate(`/detail/${id}`);
+  };
+
   return (
     <MuiListItem
       alignItems='center'
@@ -62,19 +76,22 @@ const ListItem: React.FC<IListItem> = ({ personInfo, clickListItem }) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
-      }}
-      onClick={() => clickListItem(id)}>
+      }}>
       {isLoading ?
         <CircularProgress size={35} />
         :
         <Card
           sx={{
+            ':hover': {
+              backgroundColor: 'rgb(0, 0, 0, 0.1)'
+            },
             width: '80%',
             height: '100%',
             display: 'flex',
             borderRadius: '10px',
-            cursor: 'pointer'
+            cursor: 'pointer',
           }}
+          onClick={() => handleClickItem(id)}
         >
           <CardContent
             sx={{
@@ -125,7 +142,28 @@ const ListItem: React.FC<IListItem> = ({ personInfo, clickListItem }) => {
                 {`${GenderIdentities[gender]}`}
               </Typography>
             </CardContent>
-            <CardContent>
+            <CardContent
+              sx={{
+                display: 'flex',
+                flex: 1,
+                flexDirection: 'column',
+                alignItems: 'center'
+              }}
+            >
+              <Box
+                width='100%'
+                display='flex'
+                alignItems='center'
+                justifyContent='space-around'
+                p={2}
+              >
+                <Typography component='div' variant='h6'>
+                  Popularity:
+                </Typography>
+                <Typography component='div' variant='subtitle1'>
+                  {popularity}
+                </Typography>
+              </Box>
 
             </CardContent>
           </Box>

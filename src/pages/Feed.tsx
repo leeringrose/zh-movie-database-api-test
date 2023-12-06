@@ -8,6 +8,7 @@ const Feed: React.FC = () => {
   return (
     <Container
       sx={{
+        p: 3,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
