@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // Import Mui Components
 import MuiListItem from '@mui/material/ListItem';
@@ -11,15 +10,16 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
 
 import {
   GenderIdentities,
   DepartmentColorMap,
   warnAdultWithBadge,
 } from '../../shared/service';
-import { apiServerURL, imageServerURL } from '../../config';
+import { apiServerURL } from '../../config';
 import { IPerson } from '../../shared/types';
-import { Chip } from '@mui/material';
+import PersonImage from '../core/PersonImage';
 
 interface IListItem {
   personInfo: IPerson;
@@ -37,11 +37,6 @@ const ListItem: React.FC<IListItem> = ({ personInfo }) => {
   const [avatarPath, setAvatarPath] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const location = useLocation();
-
-
-  // eslint-disable-next-line no-console
-  console.log(location);
 
   useEffect(() => {
     const fetchAvatars = async () => {
@@ -99,20 +94,11 @@ const ListItem: React.FC<IListItem> = ({ personInfo }) => {
               minWidth: 200,
               width: 200
             }}>
-            <LazyLoadImage
-              style={{
-                borderRadius: 10
-              }}
-              width='100%'
-              height='100%'
-              alt={`${name}'s Avatar`}
-              src={avatarPath ? `${imageServerURL}/${avatarPath}`
-                : `/assets/Avatar/${gender === 1 ? 'female.png' : 'male.png'}`}
-              placeholderSrc={
-                `/assets/Avatar/${gender === 1 ? 'female.png' : 'male.png'}`
-              }
-              effect='blur'
-            />
+            <PersonImage
+              path={avatarPath}
+              gender={gender}
+              alt={name}
+            ></PersonImage>
           </CardContent>
           <Box
             display='flex'

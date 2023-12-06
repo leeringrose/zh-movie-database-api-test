@@ -1,10 +1,9 @@
-import { Dispatch, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { apiServerURL } from '../config';
-import { IAction } from '../AppContext';
 
-interface IPersonDetailResult {
+interface IPersonDetail {
   adult: boolean
   biography: string | null
   also_known_as: Array<string>
@@ -17,9 +16,12 @@ interface IPersonDetailResult {
   known_for_department: string
   name: string
   place_of_birth: string | null
+  popularity: number
+  profile_path: string
 }
 
-const usePersonDetail = (personId: number, dispatch: Dispatch<IAction>) => {
+const usePersonDetail = (personId: string | undefined) => {
+  const [personDetail, setPersonDetail] = useState<IPersonDetail>({} as IPersonDetail);
 
   useEffect(() => {
     if (personId) {
@@ -30,18 +32,20 @@ const usePersonDetail = (personId: number, dispatch: Dispatch<IAction>) => {
               api_key: process.env.REACT_APP_API_KEY,
             },
           });
-          const result: IPersonDetailResult = response.data;
+          const result: IPersonDetail = response.data;
           // eslint-disable-next-line no-console
           console.log(result);
+          setPersonDetail(result);
         } catch (error) {
           // eslint-disable-next-line no-console
-          console.error('An error occurred while fetching persons data: ', error);
+          console.error('An error occurred while fetching person data: ', error);
         }
       };
-
       fetchData();
     }
-  }, [personId, dispatch]);
+  }, [personId]);
+
+  return personDetail;
 };
 
 export default usePersonDetail;
