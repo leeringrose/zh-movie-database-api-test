@@ -23,7 +23,7 @@ const NoData: React.FC<NoDataProps> = ({ category, issued }) => {
         opacity: 0.8,
         borderRadius: 10
       }}
-      src='/assets/utilities/no-data_1.gif'
+      src='/assets/utilities/no-data.png'
       alt='no_data_gif'
       width={100}
       loading='lazy'
