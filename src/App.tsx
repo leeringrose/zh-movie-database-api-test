@@ -3,7 +3,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 import './App.css';
 import { Feed } from './pages';
-import DisplayPad from './components/DisplayPad';
 import AppLayout from './Layouts/AppLayout';
 
 function App() {
@@ -12,13 +11,7 @@ function App() {
       <Routes>
         <Route path='/' element={<AppLayout />}>
           <Route index element={<Navigate to='/feed' />} />
-          <Route path='feed'
-            element={
-              <>
-                <Feed />
-                <DisplayPad />
-              </>
-            } />
+          <Route path='feed' element={<Feed />} />
         </Route>
       </Routes>
     </Box>

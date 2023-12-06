@@ -1,7 +1,2 @@
-import UserDetail from './UserDetail';
-import Feed from './Feed';
-
-export {
-  Feed,
-  UserDetail
-};
+export { default as UserDetail } from './UserDetail';
+export { default as Feed } from './Feed';

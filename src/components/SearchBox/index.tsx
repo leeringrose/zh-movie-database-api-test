@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import { AppContext } from '../../AppContext';
 import usePersons from '../../hooks/usePersons';
 import ListItem from './ListItem';
+import { Box } from '@mui/material';
 
 const SearchBox: React.FC = () => {
 
@@ -30,7 +31,10 @@ const SearchBox: React.FC = () => {
   };
 
   return (
-    <>
+    <Box
+      display='flex'
+      flexDirection='column'
+    >
       <Autocomplete
         options={persons.map((person, index) => ({
           id: index, person
@@ -40,20 +44,24 @@ const SearchBox: React.FC = () => {
           key={option.id}
           index={option.id}
           globalId={option.person.id}
-          title={option.person.name}
+          name={option.person.name}
+          photoPath={option.person.profile_path}
           clickListItem={handleListItemClick}
         />}
         getOptionLabel={(option) => option.person.name}
-        sx={{ width: 300 }}
         renderInput={(params) => <TextField
           {...params}
+          sx={{
+            width: 300,
+            cursor: 'pointer'
+          }}
           value={searchText}
           label={'Enter Person\'s Name...'}
           onChange={handleSearchChange}
           size='small'
         />}
       />
-    </>
+    </Box>
   );
 };
 

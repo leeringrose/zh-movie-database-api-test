@@ -1,30 +1,35 @@
 import React from 'react';
-
+// Import MUI components
 import MuiListItem from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 
+import Typography from '@mui/material/Typography';
+
 interface IListItem {
-  title?: string
+  name?: string
   index: number
   globalId: number
+  photoPath?: string
   clickListItem: (personId: number) => void
 }
 
 const ListItem: React.FC<IListItem> =
-  ({ index, title, clickListItem, globalId }) => <MuiListItem
+  ({ name, clickListItem, globalId }) => <MuiListItem
     sx={{
-      backgroundColor: index % 2 === 1 ? '#f5ca16' : '#fcd844'
+      position: 'relative'
     }}
     onClick={() => clickListItem(globalId)}
   >
     <ListItemText
       sx={{
-        height: '10px',
+        position: 'inherit',
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}
-    > {title}</ListItemText >
+        alignItems: 'center',
+        height: '10px',
+        p: 1
+      }}>
+      <Typography component='div' variant='subtitle1'>{name}</Typography>
+    </ListItemText >
   </MuiListItem >;
 
 export default ListItem;

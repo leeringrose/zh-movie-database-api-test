@@ -1,26 +1,21 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-
+import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
 
 import Header from '../components/Header';
+import SearchBox from '../components/SearchBox';
 
 const AppLayout: React.FC = () => {
   return <>
     <Header />
-    <Container
-      role='feed'
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        backgroundColor: 'rgb(0, 0, 0, 0.05)',
-        p: 1,
-        overflow: 'auto'
-      }}
-    >
-      <Outlet />
+    <Container sx={{ p: 3 }}>
+      <SearchBox />
     </Container>
+    <Divider sx={{
+      width: '100%'
+    }} color='rgba(0, 0, 0, 0.3)' />
+    <Outlet />
   </>;
 };
 

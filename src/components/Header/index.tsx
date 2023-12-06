@@ -1,8 +1,9 @@
 import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
-import { Container } from '@mui/material';
+import Toolbar from '@mui/material/Toolbar';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import json2mq from 'json2mq';
+import { Container } from '@mui/material';
 
 const Header = () => {
   const matchMedia = useMediaQuery(json2mq({
@@ -10,21 +11,22 @@ const Header = () => {
   }));
   return (
     <AppBar
-      position='sticky'
+      position='fixed'
+      component='nav'
+      variant='elevation'
       sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '80px',
-        background: '#f5ca16',
-        color: 'black'
+        height: '64px',
       }}>
       <Container>
-        <Typography variant={`${matchMedia ? 'h3' : 'h5'}`} sx={{
-          fontWeight: '700'
-        }}>
-          CREDIT CROSSOVER
-        </Typography>
+        <Toolbar>
+          <Typography
+            variant={`${matchMedia ? 'h5' : 'h6'}`}
+            sx={{
+              fontWeight: '600',
+            }}>
+            Welcome to Movie Database Api Explorer!
+          </Typography>
+        </Toolbar>
       </Container>
     </AppBar>
   );

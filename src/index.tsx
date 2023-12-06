@@ -7,7 +7,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ContextProvider } from './AppContext';
 
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
