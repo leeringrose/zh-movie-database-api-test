@@ -2,6 +2,7 @@ import React from 'react';
 
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
+import CategoryButton from '../components/CategoryButton';
 
 
 const Dashboard: React.FC = () => {
@@ -24,7 +25,11 @@ const Dashboard: React.FC = () => {
           height: '200px'
         }}
       >
-
+        <CategoryButton
+          title='Discover'
+        >
+          <h1>Hello Category Name!</h1>
+        </CategoryButton>
       </Paper>
     </Container >
   );
