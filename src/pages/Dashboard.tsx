@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
 
 
 const Dashboard: React.FC = () => {
@@ -10,14 +11,22 @@ const Dashboard: React.FC = () => {
       sx={{
         p: 3,
         display: 'flex',
-        justifyContent: 'center',
+        flexDirection: 'column',
         alignItems: 'center',
         overflow: 'auto',
         flex: 1
       }}
     >
-      <h1>Hello Everyone!</h1>
-    </Container>
+      <Paper
+        elevation={3}
+        sx={{
+          width: '100%',
+          height: '200px'
+        }}
+      >
+
+      </Paper>
+    </Container >
   );
 };
 
