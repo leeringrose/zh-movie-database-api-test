@@ -78,13 +78,17 @@ const ListItem: React.FC<IListItem> = ({ personInfo }) => {
         <Card
           sx={{
             ':hover': {
-              backgroundColor: 'rgb(0, 0, 0, 0.1)'
+              backgroundColor: 'rgb(0, 0, 0, 0.04)'
+            },
+            ':active': {
+              backgroundColor: 'rgb(0, 0, 0, 0.08)'
             },
             width: '80%',
             height: '100%',
             display: 'flex',
             borderRadius: '10px',
             cursor: 'pointer',
+            transition: 0.5
           }}
           onClick={() => handleClickItem(id)}
         >
