@@ -1,37 +1,35 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import Container from '@mui/material/Container';
-import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
 import CategoryButton from '../components/CategoryButton';
-
 
 const Dashboard: React.FC = () => {
 
+  const navigate = useNavigate();
+
+  const handleClickCategory = (categoryTitle: string) => {
+    // eslint-disable-next-line no-console
+    console.log(`${categoryTitle} clicked`);
+    navigate(`/${categoryTitle}`);
+  };
+
   return (
-    <Container
+    <Box
+      display='flex'
+      flexDirection='column'
+      alignItems='center'
+      justifyContent='space-between'
       sx={{
-        p: 3,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
         overflow: 'auto',
-        flex: 1
+        flex: 1,
+        p: 3
       }}
     >
-      <Paper
-        elevation={3}
-        sx={{
-          width: '100%',
-          height: '200px'
-        }}
-      >
-        <CategoryButton
-          title='Discover'
-        >
-          <h1>Hello Category Name!</h1>
-        </CategoryButton>
-      </Paper>
-    </Container >
+      <CategoryButton title='Persons' onButtonClick={handleClickCategory} />
+      <CategoryButton title='Movies' onButtonClick={handleClickCategory} />
+      <CategoryButton title='Details' onButtonClick={handleClickCategory} />
+    </Box >
   );
 };
 
