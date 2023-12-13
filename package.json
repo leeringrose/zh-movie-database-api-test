@@ -1,7 +1,7 @@
 {
   "name": "movie-database-api-test",
   "version": "v0.9-beta.1",
-  "homepage": "https://leeringrose.github.io/zh-movie-database-api-test",
+  "homepage": "https://leeringrose.github.io/zh-movie-database-api-test/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",

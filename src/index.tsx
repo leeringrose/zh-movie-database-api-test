@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ContextProvider>
-      <Router>
+      <Router basename='/zh-movie-database-api-test'>
         <App />
       </Router>
     </ContextProvider >
