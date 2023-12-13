@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ImageGallery from 'react-image-gallery';
 // Import MUI Components
@@ -11,6 +11,7 @@ import { SxProps } from '@mui/system';
 import usePersonDetail from '../hooks/usePersonDetail';
 import PersonImage from '../components/core/PersonImage';
 import { warnAdultWithBadge, genderIdentities, wrapImagePath } from '../shared/service';
+import CreditCarousel from '../components/CreditCarousel';
 
 interface WrapperProps {
   children?: React.ReactNode
@@ -50,7 +51,7 @@ const PersonDetail: React.FC = () => {
     externalIds,
     images,
     movieCredits,
-    tvCredits
+    // tvCredits
   } = usePersonDetail(params.personId);
   const {
     profile_path,
@@ -66,8 +67,10 @@ const PersonDetail: React.FC = () => {
     popularity
   } = personDetail;
 
-  // eslint-disable-next-line no-console
-  console.log(externalIds, images);
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log('images: ', images);
+  }, [images]);
 
   return <Container sx={{ p: 3 }}>
     <Paper
@@ -127,12 +130,16 @@ const PersonDetail: React.FC = () => {
           >
             <RowWrapper
               sx={{
+                alignItems: 'flex-start',
                 justifyContent: 'flex-start',
               }}
             >
               <Typography
                 variant='h6'
                 color='Highlight'
+                sx={{
+                  minWidth: 'fit-content'
+                }}
               >
                 Also known as:
               </Typography>
@@ -231,7 +238,7 @@ const PersonDetail: React.FC = () => {
         </Typography>
       </RowWrapper>
       <RowWrapper>
-        <Paper
+        {images && <Paper
           elevation={2}
           sx={{
             maxWidth: 350,
@@ -253,7 +260,7 @@ const PersonDetail: React.FC = () => {
               }))
             }
           />
-        </Paper>
+        </Paper>}
         <ColumnWrapper
           sx={{
             px: 4,
@@ -392,72 +399,33 @@ const PersonDetail: React.FC = () => {
           </RowWrapper>
         </ColumnWrapper>
       </RowWrapper>
-      <RowWrapper>
+      {movieCredits.length && <RowWrapper>
         <Paper
           elevation={2}
           sx={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            my: 3,
             p: 3,
-            maxWidth: '100%'
+            width: '100%'
           }}
         >
           <Typography
             variant='h4'
-            color='red'
+            color='Highlight'
             sx={{
-              py: 3,
+              py: 2,
               fontWeight: 700
             }}
           >
             Movie Credits
           </Typography>
-          <ImageGallery
-            additionalClass='width: 100%!important;'
-            showPlayButton={false}
-            showFullscreenButton
-            infinite
-            lazyLoad
-            showIndex
-            items={
-              movieCredits.map(image => ({
-                original: wrapImagePath(image.backdrop_path),
-                thumbnail: wrapImagePath(image.backdrop_path),
-              }))
-            }
+          <CreditCarousel
+            items={movieCredits}
           />
         </Paper>
-      </RowWrapper>
-      <RowWrapper>
-        <Paper
-          elevation={2}
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            p: 3,
-            maxWidth: '100%'
-          }}
-        >
-          <Typography variant='h3'>
-            TV Credits
-          </Typography>
-          <ImageGallery
-            showPlayButton={false}
-            showFullscreenButton
-            infinite
-            lazyLoad
-            showIndex
-            items={
-              tvCredits.map(image => ({
-                original: wrapImagePath(image.backdrop_path),
-                thumbnail: wrapImagePath(image.poster_path),
-              }))
-            }
-          />
-        </Paper>
-      </RowWrapper>
+      </RowWrapper>}
     </Paper >
   </Container >;
 };

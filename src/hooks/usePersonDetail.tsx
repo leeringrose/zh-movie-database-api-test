@@ -83,8 +83,6 @@ const usePersonDetail = (personId: string | undefined) => {
                 api_key: process.env.REACT_APP_API_KEY,
               },
             });
-          // eslint-disable-next-line no-console
-          console.log(movieCreditsData);
           setMovieCredits(movieCreditsData.cast);
           const { data: tvCreditsData } = await axios
             .get(`${apiServerURL}/person/${personId}/tv_credits`, {
@@ -92,8 +90,6 @@ const usePersonDetail = (personId: string | undefined) => {
                 api_key: process.env.REACT_APP_API_KEY,
               },
             });
-          // eslint-disable-next-line no-console
-          console.log(tvCreditsData);
           setTvCredits(tvCreditsData.cast);
         } catch (error) {
           // eslint-disable-next-line no-console
