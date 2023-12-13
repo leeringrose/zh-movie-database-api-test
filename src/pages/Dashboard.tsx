@@ -9,9 +9,7 @@ const Dashboard: React.FC = () => {
   const navigate = useNavigate();
 
   const handleClickCategory = (categoryTitle: string) => {
-    // eslint-disable-next-line no-console
-    console.log(`${categoryTitle} clicked`);
-    navigate(`/${categoryTitle}`);
+    navigate(`/${categoryTitle.toLowerCase()}`);
   };
 
   return (

@@ -3,7 +3,7 @@ import React from 'react';
 import Container from '@mui/material/Container';
 import DisplayPad from '../components/DisplayPad';
 
-const Feed: React.FC = () => {
+const Persons: React.FC = () => {
 
   return (
     <Container
@@ -21,4 +21,4 @@ const Feed: React.FC = () => {
   );
 };
 
-export default Feed;
+export default Persons;
