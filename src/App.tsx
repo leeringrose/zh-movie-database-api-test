@@ -12,10 +12,13 @@ function App() {
         <Route path='/' element={<AppLayout />}>
           <Route index element={<Navigate to='dashboard' />} />
           <Route path='dashboard' element={<Dashboard />} />
-          <Route path='persons' element={<SearchLayout />}>
+          <Route path='persons'>
             <Route index element={<Navigate to='search' />} />
-            <Route path='search' element={<PersonResult />} />
-            <Route path='person-detail/:personId' element={<PersonDetail />} />
+            <Route path='search' element={<>
+              <SearchLayout />
+              <PersonResult />
+            </>} />
+            <Route path='detail/:personId' element={<PersonDetail />} />
           </Route>
         </Route>
       </Routes>

@@ -62,7 +62,7 @@ const ListItem: React.FC<IListItem> = ({ personInfo }) => {
   }, [id]);
 
   const handleClickItem = (id: number) => {
-    const newRouterPath = replaceLastSubpath(location.pathname, `/person-detail/${id}`);
+    const newRouterPath = replaceLastSubpath(location.pathname, `/detail/${id}`);
     navigate(newRouterPath);
   };
 
