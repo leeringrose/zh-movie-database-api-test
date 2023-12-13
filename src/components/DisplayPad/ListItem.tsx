@@ -13,8 +13,8 @@ import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 
 import {
-  GenderIdentities,
-  DepartmentColorMap,
+  genderIdentities,
+  departmentColorMap,
   warnAdultWithBadge,
   replaceLastSubpath,
 } from '../../shared/service';
@@ -129,10 +129,10 @@ const ListItem: React.FC<IListItem> = ({ personInfo }) => {
               </Typography>
               <Divider sx={{ width: '100%' }} />
               {warnAdultWithBadge(adult, <Chip
-                color={DepartmentColorMap[`${known_for_department}`]}
+                color={departmentColorMap[`${known_for_department}`]}
                 label={known_for_department} />)}
               <Typography variant='subtitle1' color='blue' component='div'>
-                {`${GenderIdentities[gender]}`}
+                {`${genderIdentities[gender]}`}
               </Typography>
             </CardContent>
             <CardContent

@@ -8,9 +8,9 @@ export const wrapImagePath: (path: string) => string = (path) => {
   return imageServerURL + path;
 };
 
-export const GenderIdentities = ['Unknown', 'Female', 'Male'];
+export const genderIdentities = ['Unknown', 'Female', 'Male'];
 
-export const DepartmentColorMap: IDepartmentColorMap = {
+export const departmentColorMap: IDepartmentColorMap = {
   'Acting': 'primary',
   'Production': 'success',
   'Directing': 'warning',
