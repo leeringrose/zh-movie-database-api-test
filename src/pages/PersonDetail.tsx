@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import ImageGallery from 'react-image-gallery';
 // Import MUI Components
@@ -66,11 +66,6 @@ const PersonDetail: React.FC = () => {
     place_of_birth: placeOfBirth,
     popularity
   } = personDetail;
-
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log('images: ', images);
-  }, [images]);
 
   return <Container sx={{ p: 3 }}>
     <Paper
