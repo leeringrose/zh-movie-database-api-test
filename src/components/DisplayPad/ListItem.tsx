@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 // Import Mui Components
 import MuiListItem from '@mui/material/ListItem';
@@ -16,6 +16,7 @@ import {
   GenderIdentities,
   DepartmentColorMap,
   warnAdultWithBadge,
+  replaceLastSubpath,
 } from '../../shared/service';
 import { apiServerURL } from '../../config';
 import { IPerson } from '../../shared/types';
@@ -37,6 +38,7 @@ const ListItem: React.FC<IListItem> = ({ personInfo }) => {
   const [avatarPath, setAvatarPath] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchAvatars = async () => {
@@ -60,7 +62,8 @@ const ListItem: React.FC<IListItem> = ({ personInfo }) => {
   }, [id]);
 
   const handleClickItem = (id: number) => {
-    navigate(`/detail/${id}`);
+    const newRouterPath = replaceLastSubpath(location.pathname, `/person-detail/${id}`);
+    navigate(newRouterPath);
   };
 
   return (
@@ -154,7 +157,6 @@ const ListItem: React.FC<IListItem> = ({ personInfo }) => {
                   {popularity}
                 </Typography>
               </Box>
-
             </CardContent>
           </Box>
         </Card >

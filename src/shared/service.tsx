@@ -38,3 +38,16 @@ export const warnAdultWithBadge: (isAdult: boolean, children: ReactNode) => Reac
 export const getParentSubPath: (path: string) => string = (path) => {
   return path.substring(0, path.lastIndexOf('/'));
 };
+
+export const replaceLastSubpath:
+  (
+    currentRouterPath: string,
+    replacement: string
+  ) => string = (
+    currentRouterPath,
+    replacement
+  ) => {
+    return currentRouterPath.substring(
+      0,
+      currentRouterPath.lastIndexOf('/')) + `${replacement}`;
+  };

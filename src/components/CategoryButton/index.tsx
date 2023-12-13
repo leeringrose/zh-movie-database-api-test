@@ -13,10 +13,6 @@ interface ICategoryButton {
 // eslint-disable-next-line max-len
 const CategoryButton: React.FC<ICategoryButton> = ({ title, children, imageName, onButtonClick, ...rest }) => {
 
-  // eslint-disable-next-line no-console
-  console.log(rest);
-
-
   const matches = useMediaQuery('(min-width: 601px)');
 
   return <Paper
@@ -25,7 +21,6 @@ const CategoryButton: React.FC<ICategoryButton> = ({ title, children, imageName,
       position: 'relative',
       borderRadius: '2em',
       width: matches ? 800 : '100%',
-      height: matches ? 250 : 150,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
