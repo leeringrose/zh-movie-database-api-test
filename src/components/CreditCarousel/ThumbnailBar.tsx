@@ -35,14 +35,12 @@ const ThumbnailBar: React.FC<ThumbnailBarProps> = ({ paths, selected }) => {
     alignItems='stretch'
     justifyContent='stretch'
     sx={{
-      position: 'absolute',
       overflow: 'hidden',
       width: '100%',
       height: '120px',
       borderStyle: 'solid',
       borderWidth: 2,
-      borderColor: 'lightblue',
-      bottom: 0
+      borderColor: 'darkblue'
     }}
   >
     {shows.map((current, index) => <img
