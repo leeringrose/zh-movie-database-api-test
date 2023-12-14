@@ -50,8 +50,7 @@ const PersonDetail: React.FC = () => {
     personDetail,
     externalIds,
     images,
-    movieCredits,
-    // tvCredits
+    movieCredits
   } = usePersonDetail(params.personId);
   const {
     profile_path,

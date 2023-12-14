@@ -21,10 +21,10 @@ const NoData: React.FC<NoDataProps> = ({ category, issued }) => {
     <img
       style={{
         opacity: 0.8,
-        borderRadius: 10
+        borderRadius: '5rem'
       }}
-      src='/assets/utilities/no-data.png'
-      alt='no_data_gif'
+      src='/assets/utilities/no-data.gif'
+      alt='no_data.gif'
       width={100}
       loading='lazy'
     />

@@ -1,7 +1,7 @@
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
 img {
-  filter: blur(20px)!important;
+  filter: blur(30px)!important;
 }
 
 .image-gallery {

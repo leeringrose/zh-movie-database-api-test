@@ -10,6 +10,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { IMovieCredit } from '../../shared/types';
 import { wrapImagePath } from '../../shared/service';
 import ThumbnailBar from './ThumbnailBar';
+import useMovieDetail from '../../hooks/useMovieDetail';
 
 interface CreditCarouselProps {
   items: IMovieCredit[]
@@ -36,6 +37,10 @@ const CreditCarousel: React.FC<CreditCarouselProps> = ({
       }
     }
   };
+
+  const result = useMovieDetail(items[index].id.toString());
+  // eslint-disable-next-line no-console
+  console.log(result);
 
   return <>
     <Box
@@ -124,7 +129,8 @@ const CreditCarousel: React.FC<CreditCarouselProps> = ({
           <Paper
             elevation={13}
             sx={{
-              border: '3px solid grey'
+              border: '3px solid black',
+              position: 'relative'
             }}
           >
             <img
@@ -144,10 +150,27 @@ const CreditCarousel: React.FC<CreditCarouselProps> = ({
               flexDirection: 'column',
               alignItems: 'flex-start',
               zIndex: 40,
-              backgroundColor: 'rgba(200, 200, 200, 0.3)'
+              backgroundColor: 'rgba(200, 200, 200, 0.7)',
+              overflowY: 'auto'
             }}
             elevation={8}
           >
+            {items[index].title && <Box
+              display='inline-flex'
+              my={1}
+            >
+              <Typography
+                variant='h6'
+                fontWeight={800}
+                color='Highlight'
+                mr={2}
+              >Title:</Typography>
+              <Typography
+                variant='h5'
+                fontWeight={800}
+                color='InfoText'
+              >{items[index].title}</Typography>
+            </Box>}
             {items[index].character && <Box
               display='inline-flex'
               my={1}
@@ -196,7 +219,7 @@ const CreditCarousel: React.FC<CreditCarouselProps> = ({
                 color='InfoText'
               >{items[index].genre_ids.join(', ')}</Typography>
             </Box>}
-            {items[index].credit_id && <Box
+            {items[index].original_language && <Box
               display='inline-flex'
               my={1}
             >
@@ -205,15 +228,109 @@ const CreditCarousel: React.FC<CreditCarouselProps> = ({
                 fontWeight={800}
                 color='Highlight'
                 mr={2}
-              >Credit ID:</Typography>
+              >Original Language:</Typography>
               <Typography
                 variant='h5'
                 fontWeight={800}
                 color='InfoText'
-              >{items[index].credit_id}</Typography>
+              >{items[index].original_language}</Typography>
             </Box>}
-
-
+            {items[index].original_title && <Box
+              display='inline-flex'
+              my={1}
+            >
+              <Typography
+                variant='h6'
+                fontWeight={800}
+                color='Highlight'
+                mr={2}
+              >Original Title:</Typography>
+              <Typography
+                variant='h5'
+                fontWeight={800}
+                color='InfoText'
+              >{items[index].original_title}</Typography>
+            </Box>}
+            {items[index].overview && <Box
+              display='inline-flex'
+              my={1}
+            >
+              <Typography
+                variant='h6'
+                fontWeight={800}
+                color='Highlight'
+                mr={2}
+              >Overview:</Typography>
+              <Typography
+                variant='subtitle1'
+                fontWeight={600}
+                color='InfoText'
+              >{items[index].overview}</Typography>
+            </Box>}
+            {items[index].video && <Box
+              display='inline-flex'
+              my={1}
+            >
+              <Typography
+                variant='h6'
+                fontWeight={800}
+                color='Highlight'
+                mr={2}
+              >Video:</Typography>
+              <Typography
+                variant='h5'
+                fontWeight={800}
+                color='InfoText'
+              >{items[index].video}</Typography>
+            </Box>}
+            {items[index].vote_average && <Box
+              display='inline-flex'
+              my={1}
+            >
+              <Typography
+                variant='h6'
+                fontWeight={800}
+                color='Highlight'
+                mr={2}
+              >Vote average:</Typography>
+              <Typography
+                variant='h5'
+                fontWeight={800}
+                color='InfoText'
+              >{items[index].vote_average}</Typography>
+            </Box>}
+            {items[index].vote_count && <Box
+              display='inline-flex'
+              my={1}
+            >
+              <Typography
+                variant='h6'
+                fontWeight={800}
+                color='Highlight'
+                mr={2}
+              >Vote count:</Typography>
+              <Typography
+                variant='h5'
+                fontWeight={800}
+                color='InfoText'
+              >{items[index].vote_count}</Typography>
+            </Box>}
+            {items[index].release_date && <Box
+              display='inline-flex'
+              my={1}
+            >
+              <Typography
+                variant='h6'
+                fontWeight={800}
+                color='Highlight'
+                mr={2}
+              >Release date:</Typography>
+              <Typography
+                variant='h5'
+                fontWeight={800}
+                color='InfoText'
+              >{items[index].release_date}</Typography>
+            </Box>}
           </Paper>
         </Box>
       </Box>
