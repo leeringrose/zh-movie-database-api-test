@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import './App.css';
-import { Dashboard, PersonDetail, PersonResult } from './pages';
+import { Dashboard, PersonDetail, PersonResult, PersonFeed } from './pages';
 import { AppLayout, SearchLayout } from './Layouts';
 
 function App() {
@@ -13,7 +13,8 @@ function App() {
           <Route index element={<Navigate to='dashboard' />} />
           <Route path='dashboard' element={<Dashboard />} />
           <Route path='persons'>
-            <Route index element={<Navigate to='search' />} />
+            <Route index element={<Navigate to='feed' />} />
+            <Route path='feed' element={<PersonFeed />} />
             <Route path='search' element={<>
               <SearchLayout />
               <PersonResult />
