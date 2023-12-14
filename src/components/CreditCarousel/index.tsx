@@ -283,7 +283,7 @@ const CreditCarousel: React.FC<CreditCarouselProps> = ({
                 color='InfoText'
               >{items[index].video}</Typography>
             </Box>}
-            {items[index].vote_average && <Box
+            {!!items[index].vote_average && <Box
               display='inline-flex'
               my={1}
             >
@@ -299,10 +299,9 @@ const CreditCarousel: React.FC<CreditCarouselProps> = ({
                 color='InfoText'
               >{items[index].vote_average}</Typography>
             </Box>}
-            {items[index].vote_count && <Box
+            {!!items[index].vote_count && <Box
               display='inline-flex'
-              my={1}
-            >
+              my={1}>
               <Typography
                 variant='h6'
                 fontWeight={800}

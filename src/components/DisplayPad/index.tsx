@@ -1,50 +1,63 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import List from '@mui/material/List';
+// import Pagination from '@mui/material/Pagination';
 
 import { AppContext } from '../../AppContext';
-import ListItem from './ListItem';
-import NoData from '../NoData';
-import { ISearchResult } from '../../hooks/usePersons';
+// import ListItem from './ListItem';
+import useRatedPersons from '../../hooks/useRatedPersons';
 import { IPerson } from '../../shared/types';
+import { ISearchResult } from '../../hooks/usePersons';
 
 interface DisplayPadProps {
-  listInfo?: ISearchResult
+  isFeedMode?: boolean
 }
 
-const DisplayPad: React.FC<DisplayPadProps> = ({ listInfo }) => {
+const DisplayPad: React.FC<DisplayPadProps> = ({ isFeedMode }) => {
 
-  const { state } = useContext(AppContext);
-  const { chosens } = state;
-  const [renderList, setRenderList] = useState<IPerson[]>([]);
+  // const { state } = useContext(AppContext);
+  // const { chosens } = state;
+  const [feedRender, setFeedRender] =
+    useState<ISearchResult>({} as ISearchResult);
+  // const [renderlist, setRenderList] = useState<IPerson[]>([]);
+  const [currentPage] = useState<number>(1);
 
-  useEffect(() => {
-    if (listInfo) {
-      setRenderList(listInfo.results);
-    } else if (chosens) {
-      setRenderList(chosens);
+  const ratedPersonsResult = useRatedPersons(currentPage);
+  setFeedRender(ratedPersonsResult);
+
+  // const handlePaginationChange = (_: React.ChangeEvent<unknown>, value: number) => {
+  //   setCurrentPage(value);
+  // };
+
+  return <List
+    sx={{
+      width: '100%',
+      height: '100%'
+    }}
+  >
+    {/* <>{feedRender ? <>
+      {feedRender.results.map((person, index) =>
+        <ListItem
+          key={index}
+          personInfo={person}
+        />)}
+      <Pagination
+        count={feedRender.total_pages}
+        showFirstButton
+        showLastButton
+        page={currentPage}
+        onChange={handlePaginationChange}
+      /></>
+      : <>
+        {renderList.length && renderList.map((person, index) =>
+          <ListItem
+            key={index}
+            personInfo={person}
+          />)}
+      </>
     }
-  }, [listInfo, chosens]);
-
-  return (
-    <>
-      {renderList ?
-        <List
-          sx={{
-            width: '100%',
-            height: '100%'
-          }}
-        >
-          {renderList.map((person, index) =>
-            <ListItem
-              key={index}
-              personInfo={person}
-            />)}
-        </List >
-        : <NoData category='Person' issued='chosen' />
-      }
-    </>
-  );
+    </> */}
+  </List >;
 };
 
 export default DisplayPad;

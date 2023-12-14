@@ -6,14 +6,12 @@ import Button from '@mui/material/Button';
 import ArrowRightRounded from '@mui/icons-material/ArrowCircleRightSharp';
 
 import DisplayPad from '../components/DisplayPad';
-import useRatedPersons from '../hooks/useRatedPersons';
 import { replaceLastSubpath } from '../shared/service';
 
 const PersonFeed: React.FC = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const ratedPersons = useRatedPersons();
 
   const handleGoSearch = () => {
     navigate(replaceLastSubpath(location.pathname, '/search'));
@@ -31,7 +29,7 @@ const PersonFeed: React.FC = () => {
       Go to Search!
       <ArrowRightRounded sx={{ ml: 1 }} />
     </Button>
-    <DisplayPad listInfo={ratedPersons} />
+    <DisplayPad isFeedMode />
   </Container>;
 };
 

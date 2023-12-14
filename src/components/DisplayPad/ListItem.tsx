@@ -79,19 +79,23 @@ const ListItem: React.FC<IListItem> = ({ personInfo }) => {
         <CircularProgress size={35} />
         :
         <Card
+          elevation={3}
           sx={{
             ':hover': {
-              backgroundColor: 'rgb(0, 0, 0, 0.04)'
+              backgroundColor: 'rgb(0, 0, 0, 0.04)',
+              borderWidth: 2
             },
             ':active': {
-              backgroundColor: 'rgb(0, 0, 0, 0.08)'
+              backgroundColor: 'rgb(0, 0, 0, 0.08)',
+              borderColor: 'red'
             },
             width: '80%',
             height: '100%',
             display: 'flex',
             borderRadius: '10px',
             cursor: 'pointer',
-            transition: 0.5
+            transition: 0.5,
+            border: '1px solid blue'
           }}
           onClick={() => handleClickItem(id)}
         >
@@ -121,11 +125,23 @@ const ListItem: React.FC<IListItem> = ({ personInfo }) => {
                 width: 'fit-content',
                 minWidth: 'fit-content',
               }}>
-              <Typography component='div' variant='h6'>
+              <Typography
+                component='div'
+                variant='h5'
+                fontWeight={800}
+                lineHeight={1.5}
+                color='GrayText'
+              >
                 {`${name}`}
               </Typography>
-              <Typography variant='subtitle2' color='text.secondary' component='div'>
-                {`${original_name}`}
+              <Typography
+                variant='subtitle1'
+                color='darkviolet'
+                component='div'
+                lineHeight={1.8}
+                fontWeight={700}
+              >
+                {`(${original_name})`}
               </Typography>
               <Divider sx={{ width: '100%' }} />
               {warnAdultWithBadge(adult, <Chip
@@ -147,13 +163,25 @@ const ListItem: React.FC<IListItem> = ({ personInfo }) => {
                 width='100%'
                 display='flex'
                 alignItems='center'
-                justifyContent='space-around'
                 p={2}
               >
-                <Typography component='div' variant='h6'>
+                <Typography
+                  component='div'
+                  variant='subtitle1'
+                  color='darkgrey'
+                  fontWeight={600}
+                >
                   Popularity:
                 </Typography>
-                <Typography component='div' variant='subtitle1'>
+                <Typography
+                  component='div'
+                  variant='subtitle1'
+                  color='primary.main'
+                  fontWeight={800}
+                  sx={{
+                    ml: 1
+                  }}
+                >
                   {popularity}
                 </Typography>
               </Box>
