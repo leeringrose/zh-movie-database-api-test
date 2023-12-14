@@ -5,7 +5,7 @@ import { apiServerURL } from '../config';
 import { IAction } from '../AppContext';
 import { IPerson } from '../shared/types';
 
-interface ISearchResult {
+export interface ISearchResult {
   page: number
   results: Array<IPerson>
   total_pages: number
