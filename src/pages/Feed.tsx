@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CategoryButton from '../components/CategoryButton';
 
-const Dashboard: React.FC = () => {
+const Feed: React.FC = () => {
 
   const navigate = useNavigate();
 
@@ -31,4 +31,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default Feed;

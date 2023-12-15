@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Container from '@mui/material/Container';
-import DisplayPad from '../components/DisplayPad';
+// import DisplayPad from '../components/DisplayPad';
 
 const Persons: React.FC = () => {
 
@@ -16,7 +16,7 @@ const Persons: React.FC = () => {
         flex: 1
       }}
     >
-      <DisplayPad />
+      {/* <DisplayPad /> */}
     </Container>
   );
 };

@@ -1,33 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import List from '@mui/material/List';
-// import Pagination from '@mui/material/Pagination';
+import Pagination from '@mui/material/Pagination';
 
-import { AppContext } from '../../AppContext';
-// import ListItem from './ListItem';
-import useRatedPersons from '../../hooks/useRatedPersons';
-import { IPerson } from '../../shared/types';
+import ListItem from './ListItem';
 import { ISearchResult } from '../../hooks/usePersons';
 
 interface DisplayPadProps {
-  isFeedMode?: boolean
+  renderObject: ISearchResult
+  onPaginationChange: (event: React.ChangeEvent<unknown>, value: number) => void
 }
 
-const DisplayPad: React.FC<DisplayPadProps> = ({ isFeedMode }) => {
+const DisplayPad: React.FC<DisplayPadProps> = ({ renderObject, onPaginationChange }) => {
 
-  // const { state } = useContext(AppContext);
-  // const { chosens } = state;
-  const [feedRender, setFeedRender] =
-    useState<ISearchResult>({} as ISearchResult);
-  // const [renderlist, setRenderList] = useState<IPerson[]>([]);
-  const [currentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const ratedPersonsResult = useRatedPersons(currentPage);
-  setFeedRender(ratedPersonsResult);
-
-  // const handlePaginationChange = (_: React.ChangeEvent<unknown>, value: number) => {
-  //   setCurrentPage(value);
-  // };
+  useEffect(() => {
+    setCurrentPage(renderObject.page);
+  }, [renderObject]);
 
   return <List
     sx={{
@@ -35,28 +25,17 @@ const DisplayPad: React.FC<DisplayPadProps> = ({ isFeedMode }) => {
       height: '100%'
     }}
   >
-    {/* <>{feedRender ? <>
-      {feedRender.results.map((person, index) =>
-        <ListItem
-          key={index}
-          personInfo={person}
-        />)}
-      <Pagination
-        count={feedRender.total_pages}
-        showFirstButton
-        showLastButton
-        page={currentPage}
-        onChange={handlePaginationChange}
-      /></>
-      : <>
-        {renderList.length && renderList.map((person, index) =>
-          <ListItem
-            key={index}
-            personInfo={person}
-          />)}
-      </>
-    }
-    </> */}
+    {renderObject?.results.map((person, index) => <ListItem
+      key={index}
+      personInfo={person}
+    />)}
+    <Pagination
+      count={renderObject.total_pages}
+      showFirstButton
+      showLastButton
+      page={currentPage}
+      onChange={onPaginationChange}
+    />
   </List >;
 };
 

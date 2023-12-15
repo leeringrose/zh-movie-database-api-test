@@ -5,23 +5,28 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import ArrowRightRounded from '@mui/icons-material/ArrowCircleRightSharp';
 
-import DisplayPad from '../components/DisplayPad';
+// import DisplayPad from '../components/DisplayPad';
 import { replaceLastSubpath } from '../shared/service';
+// import useRatedPersons from '../hooks/useRatedPersons';
 
 const PersonFeed: React.FC = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
 
+  // const [currentPage, setCurrentPage] = useState(1);
+
+  // const ratedPersonsResult = useRatedPersons(currentPage);
+
   const handleGoSearch = () => {
     navigate(replaceLastSubpath(location.pathname, '/search'));
   };
 
-  return <Container
-    sx={{
-      p: 3
-    }}
-  >
+  // const handePaginationChange = (event: React.ChangeEvent<unknown>, value: number) => {
+  //   setCurrentPage(value);
+  // };
+
+  return <Container sx={{ p: 3 }}>
     <Button
       variant='contained'
       onClick={() => handleGoSearch()}
@@ -29,7 +34,10 @@ const PersonFeed: React.FC = () => {
       Go to Search!
       <ArrowRightRounded sx={{ ml: 1 }} />
     </Button>
-    <DisplayPad isFeedMode />
+    {/* <DisplayPad
+      renderObject={ratedPersonsResult}
+      onPaginationChange={handePaginationChange}
+    /> */}
   </Container>;
 };
 
