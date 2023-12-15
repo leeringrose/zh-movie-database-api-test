@@ -1,33 +1,34 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
+import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import CategoryButton from '../components/CategoryButton';
+
+import { Left, MainBoard } from '../components/Feed';
 
 const Feed: React.FC = () => {
 
-  const navigate = useNavigate();
-
-  const handleClickCategory = (categoryTitle: string) => {
-    navigate(`/${categoryTitle.toLowerCase()}`);
-  };
-
   return (
-    <Box
-      display='flex'
-      flexDirection='column'
-      alignItems='center'
-      justifyContent='space-between'
+    <Container
       sx={{
+        display: 'flex',
+        alignItems: 'flex-start',
         overflow: 'auto',
         flex: 1,
         p: 3
       }}
     >
-      <CategoryButton title='Persons' onButtonClick={handleClickCategory} />
-      <CategoryButton title='Movies' onButtonClick={handleClickCategory} />
-      <CategoryButton title='Details' onButtonClick={handleClickCategory} />
-    </Box >
+      <Box
+        p='5rem'
+      >
+        <Left />
+      </Box>
+      <Box
+        p='5rem'
+      >
+        <MainBoard />
+      </Box>
+
+    </Container >
   );
 };
 

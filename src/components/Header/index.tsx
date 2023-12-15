@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 // Import Mui Components
 import AppBar from '@mui/material/AppBar';
@@ -10,6 +10,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import HomeIcon from '@mui/icons-material/Home';
 import MovieIcon from '@mui/icons-material/Movie';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
+import Container from '@mui/material/Container';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import Stack from '@mui/material/Stack';
 
@@ -44,7 +45,24 @@ const Header: React.FC<HeaderProps> = ({
   children
 }) => {
 
+  const routerLocation = useLocation();
   const navigate = useNavigate();
+
+  const [current, setCurrent] = useState<number | null>(0);
+
+  useEffect(() => {
+    if (routerLocation.pathname.startsWith('/feed')) {
+      setCurrent(0);
+    } else if (routerLocation.pathname.startsWith('/movies')) {
+      setCurrent(1);
+    } else if (routerLocation.pathname.startsWith('/tvshows')) {
+      setCurrent(2);
+    } else if (routerLocation.pathname.startsWith('/persons')) {
+      setCurrent(3);
+    } else {
+      setCurrent(null);
+    }
+  }, [routerLocation]);
 
   const matchMedia = useMediaQuery(json2mq({
     minWidth: 612
@@ -62,37 +80,36 @@ const Header: React.FC<HeaderProps> = ({
       sx={{
         height: '64px',
       }}>
-      <Toolbar
-        sx={{
-          justifyContent: 'space-around'
-        }}
-      >
-        {logoPath && <img
-          src={logoPath}
-          alt='logo image'
-          height='90%'
-          width='auto'
-        />}
-        {title && <Typography
-          variant={`${matchMedia ? 'h5' : 'h6'}`}
-          sx={{
-            fontWeight: '600',
-          }}>
-          {title}
-        </Typography>}
-        <Stack direction='row' spacing={2}>
-          {
-            icons.map((icon, index) => <IconButton
-              key={index}
-              size='large'
-              onClick={() => handleNavBtnClick(icon.path)}
-            >
-              {icon.content}
-            </IconButton>)
-          }
-        </Stack>
-        {children}
-      </Toolbar>
+      <Container>
+        <Toolbar sx={{ justifyContent: 'space-around' }}>
+          {logoPath && <img
+            src={logoPath}
+            alt='logo image'
+            height='90%'
+            width='auto'
+          />}
+          {title && <Typography
+            variant={`${matchMedia ? 'h5' : 'h6'}`}
+            sx={{
+              fontWeight: '600',
+            }}>
+            {title}
+          </Typography>}
+          <Stack direction='row' spacing={2}>
+            {
+              icons.map((icon, index) => <IconButton
+                key={index}
+                size='large'
+                color={index == current ? 'primary' : 'default'}
+                onClick={() => handleNavBtnClick(icon.path)}
+              >
+                {icon.content}
+              </IconButton>)
+            }
+          </Stack>
+          {children}
+        </Toolbar>
+      </Container>
     </AppBar>
   );
 };
