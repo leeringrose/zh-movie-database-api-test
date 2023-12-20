@@ -1,4 +1,4 @@
-import { Dispatch, useEffect, useState } from 'react';
+import { Dispatch, useEffect } from 'react';
 import axios from 'axios';
 
 import { apiServerURL } from '../config';
@@ -12,10 +12,8 @@ export interface ISearchResult {
   total_results: number
 }
 
-const usePersons: (searchName: string, dispatch: Dispatch<IAction>) => ISearchResult =
+const usePersons: (searchName: string, dispatch: Dispatch<IAction>) => void =
   (searchName, dispatch) => {
-
-    const [searchResult, setSearchResult] = useState<ISearchResult>({} as ISearchResult);
 
     useEffect(() => {
       if (searchName) {
@@ -35,7 +33,6 @@ const usePersons: (searchName: string, dispatch: Dispatch<IAction>) => ISearchRe
               type: 'UPDATE_PERSONS',
               newPersons: result.results,
             });
-            setSearchResult(result);
           } catch (error) {
             // eslint-disable-next-line no-console
             console.error('An error occurred while fetching persons data: ', error);
@@ -45,7 +42,6 @@ const usePersons: (searchName: string, dispatch: Dispatch<IAction>) => ISearchRe
         fetchData();
       }
     }, [searchName, dispatch]);
-    return searchResult;
   };
 
 export default usePersons;
