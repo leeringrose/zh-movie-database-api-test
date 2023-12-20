@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 
 import List from '@mui/material/List';
-import Pagination from '@mui/material/Pagination';
 
 import ListItem from './ListItem';
-import { ISearchResult } from '../../hooks/usePersons';
+import { AppContext } from '../../AppContext';
 
-interface DisplayPadProps {
-  renderObject: ISearchResult
-  onPaginationChange: (event: React.ChangeEvent<unknown>, value: number) => void
-}
 
-const DisplayPad: React.FC<DisplayPadProps> = ({ renderObject, onPaginationChange }) => {
+const DisplayPad: React.FC = () => {
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const { state } = useContext(AppContext);
 
-  useEffect(() => {
-    setCurrentPage(renderObject.page);
-  }, [renderObject]);
+  // eslint-disable-next-line no-console
+  console.log(state.chosens);
 
   return <List
     sx={{
@@ -25,17 +19,10 @@ const DisplayPad: React.FC<DisplayPadProps> = ({ renderObject, onPaginationChang
       height: '100%'
     }}
   >
-    {renderObject?.results.map((person, index) => <ListItem
+    {state?.chosens.map((person, index) => <ListItem
       key={index}
       personInfo={person}
     />)}
-    <Pagination
-      count={renderObject.total_pages}
-      showFirstButton
-      showLastButton
-      page={currentPage}
-      onChange={onPaginationChange}
-    />
   </List >;
 };
 

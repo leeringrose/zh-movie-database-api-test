@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Container from '@mui/material/Container';
-// import DisplayPad from '../components/DisplayPad';
+import DisplayPad from '../components/DisplayPad';
 
 interface PersonResultProps {
   children?: React.ReactNode
@@ -9,7 +9,7 @@ interface PersonResultProps {
 
 const PersonResult: React.FC<PersonResultProps> = ({ children }) => {
   return <Container>
-    {/* <DisplayPad /> */}
+    <DisplayPad />
     {children}
   </Container>;
 };
